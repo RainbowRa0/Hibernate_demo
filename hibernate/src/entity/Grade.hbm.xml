@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd
+">
+<!-- 对应所在的包 -->
+<hibernate-mapping package="entity">
+	<!-- 实体类和数据表的名称 -->
+	<class name="Grade" table="Grade">
+		<!-- 实体类中和数据表中所对应的主键 -->
+		<id name="gid" column="gid">
+			<!-- 主键生成策略 increment是值找到最大的主键 值，并加1 -->
+			<generator class="native"></generator>
+		</id>
+		<!-- 非主键属性的配置 -->
+		<property name="gname" column="gname" />
+
+
+		<!-- 配置多对一配置信息 -->
+		<set name="stus" table="Student">
+			<!-- 多方的外建值 -->
+			<key column="gid"></key>
+			<one-to-many class="entity.Student" />
+		</set>
+
+	</class>
+</hibernate-mapping>
